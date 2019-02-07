@@ -13,9 +13,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String DATABASE_NAME = "countries";
+    private MyAsyncHelperClass db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,21 @@ public class MainActivity extends AppCompatActivity {
 
         );
 
+
+
+        startDB();
+
+
+    }
+
+    private void startDB() {
+        db = new MyAsyncHelperClass(this, DATABASE_NAME);
+        final Country a = new Country(1,"someCountry", "someCapital", 1984);
+        //db.dropTable();
+        db.insert(a);
+
+        TextView te = findViewById(R.id.textView);
+        te.setText(db.get1ByID(1).toString());
     }
 
     public void function_Button(View view) {

@@ -42,4 +42,14 @@
         app:layout_constraintTop_toBottomOf="@+id/onCreate_Button"
         app:layout_constraintVertical_bias="0.333" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="46dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/onCreate_Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </android.support.constraint.ConstraintLayout>
