@@ -1,33 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivity"
+    >
 
-    <android.support.design.widget.AppBarLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="match_parent">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
 
-    </android.support.design.widget.AppBarLayout>
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-    <include layout="@layout/content_main" />
+        </android.support.design.widget.AppBarLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        <Button
+            android:id="@+id/onCreate_Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Toast"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</android.support.design.widget.CoordinatorLayout>
+        <Button
+            android:id="@+id/function_Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="1dp"
+            android:onClick="function_Button"
+            android:text="Snackbar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/onCreate_Button"
+            />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintBottom_toTopOf="@+id/onCreate_Button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!--- include layout="@layout/content_main" /> -->
+
+        <Button
+            android:id="@+id/startService"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Start Service"
+            android:onClick="startService"/>
+
+        <TextView
+            android:id="@+id/serviceTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="service text output"/>
+
+
+        <Button
+            android:id="@+id/stopService"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Stop Service"
+            android:onClick="stopService"/>
+
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            app:srcCompat="@android:drawable/ic_dialog_email" />
+
+     </LinearLayout>
+
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

@@ -1,14 +1,21 @@
 package com.basic;
 
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +27,10 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String DATABASE_NAME = "countries";
     private MyAsyncHelperClass db;
+    private Handler mainHandler = new Handler();
+
+    public static String TIME = "time";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
 
         // start a toast
         Button btn = findViewById(R.id.onCreate_Button);
@@ -47,10 +60,8 @@ public class MainActivity extends AppCompatActivity {
 
         );
 
-
-
         startDB();
-
+        updateUI();
 
     }
 
@@ -99,4 +110,50 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void startService(View view) {
+
+        ComponentName componentName = new ComponentName(this, ExampleService.class);
+        JobInfo info = new JobInfo.Builder(123, componentName)
+                .setPersisted(true)
+                .setPeriodic(15 * 60 * 1000).build();
+
+
+        JobScheduler jobScheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
+        int result = jobScheduler.schedule(info);
+
+        if (result == JobScheduler.RESULT_SUCCESS){
+            Log.d("startService", "startService: " + "jobScheduler sucs");
+        }
+        else {
+            Log.d("startService", "startService: " + "jobScheduler failed");
+        }
+
+        
+
+        updateUI();
+
+
+    }
+
+    public void stopService(View view) {
+        Intent stop = new Intent(this, ExampleService.class);
+        stopService(stop);
+        JobScheduler jobScheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
+        jobScheduler.cancel(123);
+        Log.d("stopService", "stopService: ");
+
+    }
+
+
+    public void updateUI(){
+        SharedPreferences prefs = getSharedPreferences("MY_PREFS_NAME", MODE_PRIVATE);
+        String restoredText = prefs.getString(MainActivity.TIME, "00000000000");
+
+
+        TextView tv = findViewById(R.id.serviceTextView);
+        tv.setText(restoredText);
+    }
+
+
 }
