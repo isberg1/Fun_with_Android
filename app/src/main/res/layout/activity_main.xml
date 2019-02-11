@@ -119,6 +119,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"></fragment>
 
+        <Button
+            android:id="@+id/second_activity_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="second activity"
+            android:onClick="secondActivity"/>
+
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
