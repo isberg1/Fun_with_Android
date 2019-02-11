@@ -88,6 +88,36 @@
             android:text="Stop Service"
             android:onClick="stopService"/>
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <Button
+            android:id="@+id/fragment_one_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fragment One"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="changeFragmentPart1"/>
+        <Button
+            android:id="@+id/fragment_two_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fragment Two"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="changeFragmentPart1"/>
+
+        <fragment
+            android:name="com.basic.one"
+            android:id="@+id/fragment_place"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></fragment>
 
 
         <android.support.design.widget.FloatingActionButton

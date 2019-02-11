@@ -12,6 +12,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -129,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d("startService", "startService: " + "jobScheduler failed");
         }
 
-        
+
 
         updateUI();
 
@@ -155,5 +158,28 @@ public class MainActivity extends AppCompatActivity {
         tv.setText(restoredText);
     }
 
+    public void changeFragmentPart1(View view){
+        android.support.v4.app.Fragment fragment;
+
+        if (view == findViewById(R.id.fragment_one_button)) {
+            fragment = new one();
+            changeFragmentPart2(fragment);
+
+
+        } else if (view == findViewById(R.id.fragment_two_button)) {
+            fragment = new two();
+            changeFragmentPart2(fragment);
+        }
+    }
+
+    public void changeFragmentPart2( Fragment fragment) {
+
+ /*       FragmentManager fragmentManager = getFragmentManager();
+        android.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();*/
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_place, fragment);
+        fragmentTransaction.commit();
+    }
 
 }
